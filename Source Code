@@ -1,0 +1,41 @@
+# On-Topic Chatbot: Answering simple predefined questions
+
+# Step 1: Define the FAQ dataset
+faq = {
+    "what is dbms": "DBMS stands for Database Management System. It allows users to store, retrieve, and manage data in databases.",
+    "what is a primary key": "A primary key is a unique identifier for a record in a database table.",
+    "what is sql": "SQL stands for Structured Query Language. It is used to interact with databases.",
+    "what is normalization": "Normalization is the process of organizing data to reduce redundancy and improve data integrity.",
+    "what is a foreign key": "A foreign key is a field in one table that uniquely identifies a row in another table.",
+    "what is rdbms": "RDBMS stands for Relational Database Management System. It stores data in tables with relationships.",
+    "what is a table": "A table is a collection of related data held in a structured format within a database.",
+    "what is a query": "A query is a request for data or information from a database table or combination of tables.",
+    "what is data": "Data is raw facts and figures that can be processed to extract information.",
+    "what is information": "Information is processed data that is meaningful and useful."
+}
+
+# Step 2: Preprocessing function
+def preprocess(text):
+    return text.lower().strip()
+
+# Step 3: Chatbot response function
+def chatbot_response(user_input):
+    user_input = preprocess(user_input)
+    if user_input in faq:
+        return faq[user_input]
+    else:
+        return "Sorry, I didn't understand that. Please ask something related to DBMS or SQL."
+
+# Step 4: Chat loop
+def start_chatbot():
+    print("Welcome to the DBMS Chatbot! Type 'exit' to end the chat.\n")
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() == "exit":
+            print("Bot: Thank you! Have a nice day.")
+            break
+        response = chatbot_response(user_input)
+        print("Bot:", response)
+
+# Start the chatbot
+start_chatbot()
